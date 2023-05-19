@@ -1,14 +1,3 @@
-import os
-import openai
-
-api_key = os.environ.get('OPENAI_API_KEY')
-
-def generate_content(title, keywords, avoid_keywords, content_type, length):
-    prompt = f"Title: {title}\nKeywords: {keywords}\nAvoid: {avoid_keywords}\nType: {content_type}\nLength: {length}\n\nContent:"
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=length,
-        api_key=api_key
-    )
-    return response.choices[0].text.strip()
+version https://git-lfs.github.com/spec/v1
+oid sha256:d520395f407f7f7f948fd0a5fcd2934e466eaa65ba0148d8f9a5bdf169796f41
+size 476
