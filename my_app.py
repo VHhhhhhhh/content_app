@@ -14,16 +14,12 @@ service_areas = st.text_input("Service Areas:")
 
 if st.button('Generate'):
     total_length = 0
-    total_cost = 0
     total_tokens = 0
     for _ in range(number_of_contents):
-        content = generate_content(title, keywords, avoid_keywords, number_of_contents, service_areas, api_key, content_type, length)
+        content, tokens_used = generate_content(title, keywords, avoid_keywords, content_type, length, number_of_contents, service_areas, api_key)
         st.write(content)
         total_length += len(content.split())
-        total_tokens += len(content)
-        total_cost += total_tokens / 10**6 * openai.Pricing.unit_cost  # assuming $0.06 per token
+        total_tokens += tokens_used
 
     st.write(f"Total words generated: {total_length}")
     st.write(f"Total tokens used: {total_tokens}")
-    st.write(f"Total cost: ${total_cost:.2f}")
-

@@ -9,4 +9,6 @@ def generate_content(title, keywords, avoid_keywords, content_type, length, numb
         max_tokens=length,
         api_key=api_key
     )
-    return response.choices[0].text.strip()
+    content = response.choices[0].text.strip()
+    tokens_used = response.usage['total_tokens']
+    return content, tokens_used
