@@ -16,7 +16,7 @@ if st.button('Generate'):
     total_cost = 0
     total_tokens = 0
     for _ in range(number_of_contents):
-        content = generate_content(title, keywords, avoid_keywords, content_type, length)
+       content = generate_content(title, keywords, avoid_keywords, number_of_contents, service_areas, api_key, content_type, length)
         st.write(content)
         total_length += len(content.split())
         total_tokens += len(content)
