@@ -15,10 +15,11 @@ service_areas = st.text_input("Service Areas:")
 if st.button('Generate'):
     total_length = 0
     total_tokens = 0
-    for _ in range(number_of_contents):
+    for i in range(number_of_contents):
         content, tokens_used = generate_content(title, keywords, avoid_keywords, content_type, length, number_of_contents, service_areas, api_key)
-        st.write(content)
-        total_length += len(content.split())
+        content_length = len(content.split())
+        st.write(f"{i+1}. ({content_length} words)\n{content}\n")
+        total_length += content_length
         total_tokens += tokens_used
 
     st.write(f"Total words generated: {total_length}")
