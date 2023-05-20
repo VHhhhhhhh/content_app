@@ -16,7 +16,7 @@ if st.button('Generate'):
     total_cost = 0
     total_tokens = 0
     for _ in range(number_of_contents):
-       content = generate_content(title, keywords, avoid_keywords, number_of_contents, service_areas, api_key, content_type, length)
+        content = generate_content(title, keywords, avoid_keywords, number_of_contents, service_areas, api_key, content_type, length)
         st.write(content)
         total_length += len(content.split())
         total_tokens += len(content)
@@ -25,3 +25,4 @@ if st.button('Generate'):
     st.write(f"Total words generated: {total_length}")
     st.write(f"Total tokens used: {total_tokens}")
     st.write(f"Total cost: ${total_cost:.2f}")
+
