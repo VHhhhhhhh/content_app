@@ -12,7 +12,7 @@ length = st.number_input("Length:", min_value=100, max_value=10000, step=100)
 number_of_contents = st.number_input("How Many:", min_value=1, max_value=100, step=1)
 service_areas = st.text_input("Service Areas:")
 
-iif st.button('Generate'):
+if st.button('Generate'):
     total_length = 0
     total_tokens = 0
     for i in range(number_of_contents):
