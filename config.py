@@ -1,8 +1,4 @@
-# Import the necessary modules
-import config
+import os
 
-# Access the API key from the config.py file
-api_key = config.api_key
-
-# Use the API key in your code
-# ...
+# Retrieve the API key from environment variables
+api_key = os.environ.get('API_KEY', 'default_api_key')

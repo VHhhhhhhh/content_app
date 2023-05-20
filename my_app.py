@@ -1,5 +1,6 @@
 import streamlit as st
 from my_chatbot import generate_content
+from config import api_key 
 
 st.title('Content Generator')
 
