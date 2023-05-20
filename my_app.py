@@ -18,7 +18,8 @@ if st.button('Generate'):
     for i in range(number_of_contents):
         content, tokens_used = generate_content(title, keywords, avoid_keywords, content_type, length, number_of_contents, service_areas, api_key)
         content_length = len(content.split())
-        st.markdown(f"**{i+1}. ({content_length} words)**<br/>{content.replace('\n', '<br/>')}", unsafe_allow_html=True)
+        content = content.replace('\n', '<br/>')
+        st.markdown(f"**{i+1}. ({content_length} words)**<br/>{content}", unsafe_allow_html=True)
         total_length += content_length
         total_tokens += tokens_used
 
