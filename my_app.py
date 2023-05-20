@@ -12,13 +12,13 @@ length = st.number_input("Length:", min_value=100, max_value=10000, step=100)
 number_of_contents = st.number_input("How Many:", min_value=1, max_value=100, step=1)
 service_areas = st.text_input("Service Areas:")
 
-if st.button('Generate'):
+iif st.button('Generate'):
     total_length = 0
     total_tokens = 0
     for i in range(number_of_contents):
         content, tokens_used = generate_content(title, keywords, avoid_keywords, content_type, length, number_of_contents, service_areas, api_key)
         content_length = len(content.split())
-        st.markdown(f"**{i+1}. ({content_length} words)**\n{content}\n")
+        st.markdown(f"**{i+1}. ({content_length} words)**<br/>{content.replace('\n', '<br/>')}", unsafe_allow_html=True)
         total_length += content_length
         total_tokens += tokens_used
 
