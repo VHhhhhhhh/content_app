@@ -21,4 +21,7 @@ def generate_content_v1(title, keywords, avoid_keywords, content_type, length, s
         return content, tokens_used, content_length
     except Exception as e:
         print(f"An error occurred: {e}")
+        print(f"Prompt used: {prompt}")
+        print(f"Length: {length}")
+        print(f"Service Areas: {service_areas}")
         return None, None, None
