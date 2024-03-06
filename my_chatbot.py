@@ -1,5 +1,6 @@
 import os
 from openai import OpenAI
+import traceback
 
 # Instantiate a client and set the API key from the environment variable
 client = OpenAI(api_key=os.getenv('API_KEY'))
@@ -20,7 +21,7 @@ def generate_content_v1(title, keywords, avoid_keywords, content_type, length, s
         content_length = len(content.split())  # Calculate content length
         return content, tokens_used, content_length
     except Exception as e:
-        print(f"An error occurred: {e}")
+        traceback.print_exc()
         print(f"Prompt used: {prompt}")
         print(f"Length: {length}")
         print(f"Service Areas: {service_areas}")
