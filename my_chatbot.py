@@ -16,7 +16,13 @@ def generate_content_v1(title, keywords, avoid_keywords, content_type, length, s
         )
         content = completion.choices[0].text.strip()  # Access response content
         tokens_used = completion.usage.total_tokens  # Access token usage
-        return content, tokens_used
+        
+        if content:
+            content_length = len(content.split())
+        else:
+            content_length = 0
+            
+        return content, tokens_used, content_length
     except APIError as e:
         print(f"An error occurred: {e}")
-        return None, None
+        return None, None, None
