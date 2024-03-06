@@ -1,3 +1,3 @@
 import os
 
-api_key = os.getenv('API_KEY', 'default_api_key')
+API_KEY = os.getenv('API_KEY', 'default_api_key')
