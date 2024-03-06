@@ -1,5 +1,5 @@
 import streamlit as st
-from my_chatbot import generate_content_v1  # Update import to match the new function name
+from my_chatbot import generate_content_v1
 
 st.title('Content Generator')
 
@@ -16,12 +16,16 @@ if st.button('Generate'):
     total_tokens = 0
     for i in range(number_of_contents):
         # Call the updated generate_content_v1 function
-        content, tokens_used = generate_content_v1(title, keywords, avoid_keywords, content_type, length, service_areas)  
-        content_length = len(content.split())
-        content = content.replace('\n', '<br/>')
-        st.markdown(f"**{i+1}. ({content_length} words)**<br/>{content}", unsafe_allow_html=True)
-        total_length += content_length
-        total_tokens += tokens_used
+        content, tokens_used, content_length = generate_content_v1(title, keywords, avoid_keywords, content_type, length, service_areas)  
+        
+        if content is not None and tokens_used is not None and content_length is not None:
+            content = content.replace('\n', '<br/>')
+            st.markdown(f"**{i+1}. ({content_length} words)**<br/>{content}", unsafe_allow_html=True)
+            total_length += content_length
+            total_tokens += tokens_used
+        else:
+            st.error("An error occurred while generating content.")
+            break
 
     st.write(f"Total words generated: {total_length}")
     st.write(f"Total tokens used: {total_tokens}")
