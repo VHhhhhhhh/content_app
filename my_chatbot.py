@@ -1,16 +1,19 @@
 import os
-import openai
+from openai import OpenAI
 
-openai.api_key = os.getenv('API_KEY', 'default_api_key')  # Set the API key globally
+# Instantiate a client and set the API key from the environment variable
+client = OpenAI(api_key=os.getenv('API_KEY'))
 
-def generate_content(title, keywords, avoid_keywords, content_type, length, service_areas):
+def generate_content_v1(title, keywords, avoid_keywords, content_type, length, service_areas):
     prompt = f"Title: {title}\nKeywords: {keywords}\nAvoid: {avoid_keywords}\nType: {content_type}\nLength: {length}\nService Areas: {service_areas}\n\nContent:"
     
-    response = openai.Completion.create(
-        model="gpt-4-0125-preview",  # Use the GPT-4-0125-preview model
+    # Create a completion with the desired model, prompt, and parameters using client.completions.create
+    completion = client.completions.create(
+        model="gpt-4-0125-preview",
         prompt=prompt,
-        max_tokens=length
+        max_tokens=length,
+        endpoint="v1/completions"
     )
-    content = response['choices'][0]['text'].strip()  # Access response content
-    tokens_used = response['usage']['total_tokens']  # Access token usage
+    content = completion.choices[0].text.strip()  # Access response content
+    tokens_used = completion.usage.total_tokens  # Access token usage
     return content, tokens_used
