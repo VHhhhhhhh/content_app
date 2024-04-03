@@ -13,8 +13,7 @@ def generate_content_v1(title, keywords, avoid_keywords, content_type, length, s
         completion = client.completions.create(
             model="gpt-4-0125-preview",
             prompt=prompt,
-            max_tokens=length,
-            endpoint="v1/completions"
+            max_tokens=length
         )
         content = completion.choices[0].text.strip()  # Access response content
         tokens_used = completion.usage.total_tokens  # Access token usage
